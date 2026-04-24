@@ -79,6 +79,22 @@
             color: var(--cyan);
         }
 
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 2000;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
         /* ─── HERO ─── */
         .hero {
             position: relative;
@@ -609,17 +625,47 @@
         @media (max-width: 900px) {
             .hero-inner {
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: center;
                 padding-top: 100px;
-            }
-
-            .hero-photo {
-                width: 80%;
-                align-self: center;
+                text-align: center;
             }
 
             .hero-text {
                 padding-bottom: 0;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-text img {
+                width: 80% !important;
+                max-width: 320px !important;
+                height: auto !important;
+                margin: 0 auto 1.5rem auto !important;
+            }
+
+            .hero-institution {
+                text-align: center;
+            }
+
+            .hero-tagline {
+                margin: 1.5rem 0 0 0 !important;
+                font-size: 1.5rem !important;
+                text-align: center !important;
+            }
+
+            .hero-photo {
+                width: 130%;
+                max-width: 520px;
+                align-self: center;
+                margin-top: 0.5rem;
+            }
+
+            .hero-photo img {
+                width: 100% !important;
+                margin: 0 !important;
+                height: auto !important;
             }
 
             .candidato-inner {
@@ -636,8 +682,50 @@
                 right: -0.5rem;
             }
 
+            .hamburger {
+                display: flex;
+            }
+
             nav ul {
-                display: none;
+                display: flex !important;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 250px;
+                height: 100vh;
+                background: rgba(10, 20, 60, 0.95);
+                backdrop-filter: blur(10px);
+                padding-top: 80px;
+                transition: 0.3s ease-in-out;
+                z-index: 1000;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+                align-items: center;
+                gap: 2rem;
+            }
+
+            nav ul.active {
+                right: 0;
+            }
+
+            nav ul li {
+                margin: 0;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
             }
         }
 
@@ -1010,13 +1098,18 @@
     <!-- NAV -->
     <nav>
         <img class="nav-logo" src="assets/logo_horizontal.svg" alt="Luiz Muniz PGJ">
-        <ul>
-            <li><a href="#carta">A Candidatura</a></li>
-            <li><a href="#propostas">Propostas</a></li>
-            <li><a href="#atuacao">Atuação</a></li>
-            <li><a href="#candidato">O Candidato</a></li>
-            <li><a href="#formacao">Formação</a></li>
-            <li><a href="#contribuir">Participar</a></li>
+        <div class="hamburger" onclick="toggleMobileMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul id="navMenu">
+            <li><a href="#carta" onclick="closeMobileMenu()">A Candidatura</a></li>
+            <li><a href="#propostas" onclick="closeMobileMenu()">Propostas</a></li>
+            <li><a href="#atuacao" onclick="closeMobileMenu()">Atuação</a></li>
+            <li><a href="#candidato" onclick="closeMobileMenu()">O Candidato</a></li>
+            <li><a href="#formacao" onclick="closeMobileMenu()">Formação</a></li>
+            <li><a href="#contribuir" onclick="closeMobileMenu()">Participar</a></li>
         </ul>
     </nav>
 
@@ -1156,7 +1249,7 @@
                         <p class="exp-role">Promotor de Justiça Corregedor – MPMA</p>
                     </div>
                     <div class="exp-item">
-                        <p class="exp-period">+6 anos como Coordenador</p>
+                        <p class="exp-period">2020 – 2026</p>
                         <p class="exp-role">GAECO – Grupo de Atuação Especial de Combate às Organizações Criminosas</p>
                     </div>
                     <div class="exp-item">
@@ -1271,7 +1364,8 @@
                     onclick="openLightbox('assets/WhatsApp Image 2026-04-14 at 13.38.45 (2).jpeg')">
                     <img src="assets/WhatsApp Image 2026-04-14 at 13.38.45 (2).jpeg" alt="Atuação Luiz Muniz">
                 </div>
-                <div class="gallery-item" onclick="openLightbox('assets/WhatsApp Image 2026-04-22 at 13.57.33 (1).jpeg')">
+                <div class="gallery-item"
+                    onclick="openLightbox('assets/WhatsApp Image 2026-04-22 at 13.57.33 (1).jpeg')">
                     <img src="assets/WhatsApp Image 2026-04-22 at 13.57.33 (1).jpeg" alt="Atuação Luiz Muniz">
                 </div>
                 <div class="gallery-item" onclick="openLightbox('assets/WhatsApp Image 2026-04-22 at 13.57.33.jpeg')">
@@ -1280,16 +1374,19 @@
                 <div class="gallery-item" onclick="openLightbox('assets/WhatsApp Image 2026-04-22 at 13.57.37.jpeg')">
                     <img src="assets/WhatsApp Image 2026-04-22 at 13.57.37.jpeg" alt="Atuação Luiz Muniz">
                 </div>
-                <div class="gallery-item" onclick="openLightbox('assets/WhatsApp Image 2026-04-22 at 13.57.38 (1).jpeg')">
+                <div class="gallery-item"
+                    onclick="openLightbox('assets/WhatsApp Image 2026-04-22 at 13.57.38 (1).jpeg')">
                     <img src="assets/WhatsApp Image 2026-04-22 at 13.57.38 (1).jpeg" alt="Atuação Luiz Muniz">
                 </div>
-                <div class="gallery-item" onclick="openLightbox('assets/WhatsApp Image 2026-04-22 at 13.57.38 (2).jpeg')">
+                <div class="gallery-item"
+                    onclick="openLightbox('assets/WhatsApp Image 2026-04-22 at 13.57.38 (2).jpeg')">
                     <img src="assets/WhatsApp Image 2026-04-22 at 13.57.38 (2).jpeg" alt="Atuação Luiz Muniz">
                 </div>
                 <div class="gallery-item" onclick="openLightbox('assets/WhatsApp Image 2026-04-22 at 13.57.38.jpeg')">
                     <img src="assets/WhatsApp Image 2026-04-22 at 13.57.38.jpeg" alt="Atuação Luiz Muniz">
                 </div>
-                <div class="gallery-item" onclick="openLightbox('assets/WhatsApp Image 2026-04-14 at 13.38.45 (1).jpeg')">
+                <div class="gallery-item"
+                    onclick="openLightbox('assets/WhatsApp Image 2026-04-14 at 13.38.45 (1).jpeg')">
                     <img src="assets/WhatsApp Image 2026-04-14 at 13.38.45 (1).jpeg" alt="Atuação Luiz Muniz">
                 </div>
                 <div class="gallery-item" onclick="openLightbox('assets/WhatsApp Image 2026-04-14 at 13.38.45.jpeg')">
@@ -1405,6 +1502,17 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeModal();
         });
+
+        // Mobile Menu Logic
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
+            document.querySelector('.hamburger').classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            document.getElementById('navMenu').classList.remove('active');
+            document.querySelector('.hamburger').classList.remove('active');
+        }
     </script>
 </body>
 
