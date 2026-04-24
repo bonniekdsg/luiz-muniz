@@ -793,6 +793,8 @@
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
             transform: translateY(20px);
             transition: transform 0.3s ease;
+            max-height: 95vh;
+            overflow-y: auto;
         }
 
         .modal-overlay.active .modal-content {
@@ -1380,6 +1382,7 @@
             const title = card.querySelector('.pilar-title').innerText;
             const desc = document.getElementById(`desc-${id}`).innerText;
 
+            document.getElementById('modalTitle').style.display = 'block';
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalBody').innerText = desc;
             document.getElementById('modalOverlay').classList.add('active');
@@ -1392,8 +1395,8 @@
         }
 
         function openLightbox(imgSrc) {
-            document.getElementById('modalTitle').innerText = "Atuação Institucional";
-            document.getElementById('modalBody').innerHTML = `<img src="${imgSrc}" style="width:100%; border-radius:4px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">`;
+            document.getElementById('modalTitle').style.display = 'none';
+            document.getElementById('modalBody').innerHTML = `<div style="display:flex; justify-content:center;"><img src="${imgSrc}" style="max-width:100%; max-height:65vh; object-fit:contain; border-radius:4px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);"></div>`;
             document.getElementById('modalOverlay').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
