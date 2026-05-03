@@ -7,14 +7,16 @@
     <title>Luiz Muniz – Candidatura PGJ 2026–2028</title>
     <!-- Social Media Meta Tags -->
     <meta property="og:title" content="Luiz Muniz – Candidatura PGJ 2026–2028" />
-    <meta property="og:description" content="Fortalecer a atuação do membro é fortalecer o Ministério Público. Conheça as propostas." />
+    <meta property="og:description"
+        content="Fortalecer a atuação do membro é fortalecer o Ministério Público. Conheça as propostas." />
     <meta property="og:image" content="https://luizmuniz.com/assets/og-image.jpg" />
     <meta property="og:url" content="https://luizmuniz.com/" />
     <meta property="og:type" content="website" />
-    
+
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Luiz Muniz – Candidatura PGJ 2026–2028">
-    <meta name="twitter:description" content="Fortalecer a atuação do membro é fortalecer o Ministério Público. Conheça as propostas.">
+    <meta name="twitter:description"
+        content="Fortalecer a atuação do membro é fortalecer o Ministério Público. Conheça as propostas.">
     <meta name="twitter:image" content="https://luizmuniz.com/assets/og-image.jpg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -535,6 +537,57 @@
             margin-bottom: 0.1rem;
         }
 
+        /* ─── CAROUSEL ─── */
+        .apoios-carousel {
+            background: #f7f9fc;
+            padding: 4rem 0;
+            overflow: hidden;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .carousel-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 1rem;
+            width: max-content;
+            animation: scroll-carousel 35s linear infinite;
+        }
+
+        .carousel-track:hover {
+            animation-play-state: paused;
+        }
+
+        .carousel-group {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .carousel-group img {
+            height: 250px;
+            width: auto;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .carousel-group img:hover {
+            transform: scale(1.02);
+        }
+
+        @keyframes scroll-carousel {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-50% - 0.5rem)); }
+        }
+
         /* ─── FOOTER ─── */
         footer {
             background: var(--blue-dark);
@@ -899,6 +952,22 @@
             transition: transform 0.3s ease;
             max-height: 95vh;
             overflow-y: auto;
+        }
+
+        .modal-content.lightbox-mode {
+            background: transparent;
+            backdrop-filter: none;
+            border: none;
+            box-shadow: none;
+            max-width: 95vw;
+            padding: 1rem;
+            overflow: visible;
+        }
+
+        .modal-content.lightbox-mode .modal-close {
+            top: -2rem;
+            right: 0;
+            opacity: 0.9;
         }
 
         .modal-overlay.active .modal-content {
@@ -1412,6 +1481,34 @@
         </div>
     </section>
 
+    <!-- APOIOS (CARROSSEL) -->
+    <section class="apoios-carousel" id="apoios">
+        <div class="carousel-container">
+            <div class="carousel-track">
+                <!-- Group 1 -->
+                <div class="carousel-group">
+                    <img src="assets/WhatsApp Image 2026-04-30 at 08.56.54.webp" alt="Apoios Luiz Muniz" onclick="openLightbox('assets/WhatsApp Image 2026-04-30 at 08.56.54.webp')">
+                    <img src="assets/WhatsApp Image 2026-04-30 at 08.56.54 (2).webp" alt="Apoios Luiz Muniz" onclick="openLightbox('assets/WhatsApp Image 2026-04-30 at 08.56.54 (2).webp')">
+                    <img src="assets/WhatsApp Image 2026-04-30 at 08.56.54 (1).webp" alt="Apoios Luiz Muniz" onclick="openLightbox('assets/WhatsApp Image 2026-04-30 at 08.56.54 (1).webp')">
+                    <img src="assets/WhatsApp Image 2026-04-30 at 08.56.53.webp" alt="Apoios Luiz Muniz" onclick="openLightbox('assets/WhatsApp Image 2026-04-30 at 08.56.53.webp')">
+                    <img src="assets/WhatsApp Image 2026-04-30 at 08.08.55.webp" alt="Apoios Luiz Muniz" onclick="openLightbox('assets/WhatsApp Image 2026-04-30 at 08.08.55.webp')">
+                    <img src="assets/WhatsApp Image 2026-04-30 at 08.08.55 (1).webp" alt="Apoios Luiz Muniz" onclick="openLightbox('assets/WhatsApp Image 2026-04-30 at 08.08.55 (1).webp')">
+                    <img src="assets/WhatsApp Image 2026-04-30 at 08.08.54.webp" alt="Apoios Luiz Muniz" onclick="openLightbox('assets/WhatsApp Image 2026-04-30 at 08.08.54.webp')">
+                </div>
+                <!-- Group 2 (Duplicate for infinite loop) -->
+                <div class="carousel-group">
+                    <img src="assets/WhatsApp Image 2026-04-30 at 08.56.54.webp" alt="Apoios Luiz Muniz" onclick="openLightbox('assets/WhatsApp Image 2026-04-30 at 08.56.54.webp')">
+                    <img src="assets/WhatsApp Image 2026-04-30 at 08.56.54 (2).webp" alt="Apoios Luiz Muniz" onclick="openLightbox('assets/WhatsApp Image 2026-04-30 at 08.56.54 (2).webp')">
+                    <img src="assets/WhatsApp Image 2026-04-30 at 08.56.54 (1).webp" alt="Apoios Luiz Muniz" onclick="openLightbox('assets/WhatsApp Image 2026-04-30 at 08.56.54 (1).webp')">
+                    <img src="assets/WhatsApp Image 2026-04-30 at 08.56.53.webp" alt="Apoios Luiz Muniz" onclick="openLightbox('assets/WhatsApp Image 2026-04-30 at 08.56.53.webp')">
+                    <img src="assets/WhatsApp Image 2026-04-30 at 08.08.55.webp" alt="Apoios Luiz Muniz" onclick="openLightbox('assets/WhatsApp Image 2026-04-30 at 08.08.55.webp')">
+                    <img src="assets/WhatsApp Image 2026-04-30 at 08.08.55 (1).webp" alt="Apoios Luiz Muniz" onclick="openLightbox('assets/WhatsApp Image 2026-04-30 at 08.08.55 (1).webp')">
+                    <img src="assets/WhatsApp Image 2026-04-30 at 08.08.54.webp" alt="Apoios Luiz Muniz" onclick="openLightbox('assets/WhatsApp Image 2026-04-30 at 08.08.54.webp')">
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- CONTRIBUIR -->
     <section class="contribuir" id="contribuir">
         <div class="contribuir-inner">
@@ -1495,6 +1592,7 @@
             const title = card.querySelector('.pilar-title').innerText;
             const desc = document.getElementById(`desc-${id}`).innerText;
 
+            document.querySelector('.modal-content').classList.remove('lightbox-mode');
             document.getElementById('modalTitle').style.display = 'block';
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalBody').innerText = desc;
@@ -1508,8 +1606,9 @@
         }
 
         function openLightbox(imgSrc) {
+            document.querySelector('.modal-content').classList.add('lightbox-mode');
             document.getElementById('modalTitle').style.display = 'none';
-            document.getElementById('modalBody').innerHTML = `<div style="display:flex; justify-content:center;"><img src="${imgSrc}" style="max-width:100%; max-height:65vh; object-fit:contain; border-radius:4px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);"></div>`;
+            document.getElementById('modalBody').innerHTML = `<div style="display:flex; justify-content:center;"><img src="${imgSrc}" style="max-width:100%; max-height:85vh; object-fit:contain; border-radius:8px; box-shadow: 0 10px 40px rgba(0,0,0,0.4);"></div>`;
             document.getElementById('modalOverlay').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
