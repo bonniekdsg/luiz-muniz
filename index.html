@@ -1109,6 +1109,43 @@
             margin-top: 3.5rem;
         }
 
+        .category-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .category-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(99, 180, 190, 0.3);
+            border-top: 3px solid #63b4be;
+            padding: 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
+        }
+
+        .category-card:hover, .category-card.active {
+            background: rgba(99, 180, 190, 0.15);
+            border-top: 3px solid #fff;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .category-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            margin: 0;
+            line-height: 1.4;
+        }
+
         .gallery-item {
             position: relative;
             border-radius: 4px;
@@ -1130,6 +1167,16 @@
             transform: scale(1.1);
         }
 
+        /* Override aspect ratio to avoid cropping the new proposal cards */
+        #categoryGallery .gallery-item {
+            aspect-ratio: auto;
+        }
+        #categoryGallery .gallery-item img {
+            height: auto;
+            object-fit: unset;
+            display: block;
+        }
+
         .gallery-item::before {
             content: '';
             position: absolute;
@@ -1148,7 +1195,7 @@
         }
 
         .gallery-item::after {
-            content: 'Ver foto';
+            content: 'Ver imagem';
             position: absolute;
             top: 55%;
             left: 50%;
@@ -1288,6 +1335,72 @@
                     <span class="saiba-mais">Saiba mais +</span>
                     <div id="desc-3" style="display:none;">Com fortalecimento das estruturas especializadas e ampliação
                         da capacidade de resposta institucional.</div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 6rem; margin-bottom: -1rem; position: relative; z-index: 10;">
+                <p style="color: #63b4be; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.5rem;">
+                    Explorar em Detalhes
+                </p>
+                <p style="color: rgba(255,255,255,0.9); font-size: 1.05rem; line-height: 1.5; max-width: 500px; margin: 0 auto;">
+                    Clique nos eixos temáticos abaixo para visualizar as propostas e frentes de atuação de cada área.
+                </p>
+            </div>
+
+            <div class="category-cards-grid">
+                <div class="category-card" onclick="showCategory('trabalho', this)">
+                    <h3>Trabalho e Qualidade de Vida</h3>
+                </div>
+                <div class="category-card" onclick="showCategory('atuacao', this)">
+                    <h3>Atuação e Resultado</h3>
+                </div>
+                <div class="category-card" onclick="showCategory('gestao', this)">
+                    <h3>Gestão e Governança</h3>
+                </div>
+                <div class="category-card" onclick="showCategory('compromisso', this)">
+                    <h3>Compromisso que Transforma</h3>
+                </div>
+            </div>
+
+            <div class="gallery-grid" id="categoryGallery" style="margin-top: 2.5rem; display: none;">
+                <div class="gallery-item category-trabalho" onclick="openLightbox('assets/1.jpeg')">
+                    <img src="assets/1.jpeg" alt="Trabalho e Qualidade de Vida">
+                </div>
+                <div class="gallery-item category-trabalho" onclick="openLightbox('assets/2.jpeg')">
+                    <img src="assets/2.jpeg" alt="Trabalho e Qualidade de Vida">
+                </div>
+                <div class="gallery-item category-trabalho" onclick="openLightbox('assets/3.jpeg')">
+                    <img src="assets/3.jpeg" alt="Trabalho e Qualidade de Vida">
+                </div>
+                <div class="gallery-item category-trabalho" onclick="openLightbox('assets/4.jpeg')">
+                    <img src="assets/4.jpeg" alt="Trabalho e Qualidade de Vida">
+                </div>
+                <div class="gallery-item category-trabalho" onclick="openLightbox('assets/5.jpeg')">
+                    <img src="assets/5.jpeg" alt="Trabalho e Qualidade de Vida">
+                </div>
+                <div class="gallery-item category-trabalho" onclick="openLightbox('assets/6.jpeg')">
+                    <img src="assets/6.jpeg" alt="Trabalho e Qualidade de Vida">
+                </div>
+
+                <div class="gallery-item category-atuacao" onclick="openLightbox('assets/7.jpeg')">
+                    <img src="assets/7.jpeg" alt="Atuação e Resultado">
+                </div>
+                <div class="gallery-item category-atuacao" onclick="openLightbox('assets/8.jpeg')">
+                    <img src="assets/8.jpeg" alt="Atuação e Resultado">
+                </div>
+                <div class="gallery-item category-atuacao" onclick="openLightbox('assets/9.jpeg')">
+                    <img src="assets/9.jpeg" alt="Atuação e Resultado">
+                </div>
+
+                <div class="gallery-item category-gestao" onclick="openLightbox('assets/10.jpeg')">
+                    <img src="assets/10.jpeg" alt="Gestão e Governança">
+                </div>
+                <div class="gallery-item category-gestao" onclick="openLightbox('assets/11.jpeg')">
+                    <img src="assets/11.jpeg" alt="Gestão e Governança">
+                </div>
+
+                <div class="gallery-item category-compromisso" onclick="openLightbox('assets/12.jpeg')">
+                    <img src="assets/12.jpeg" alt="Compromisso que Transforma">
                 </div>
             </div>
         </div>
@@ -1646,6 +1759,32 @@
         function closeMobileMenu() {
             document.getElementById('navMenu').classList.remove('active');
             document.querySelector('.hamburger').classList.remove('active');
+        }
+
+        // Category Cards Logic
+        function showCategory(catId, element) {
+            // Remove active state from all category cards
+            document.querySelectorAll('.category-card').forEach(card => card.classList.remove('active'));
+            // Add active state to clicked card
+            element.classList.add('active');
+
+            // Show gallery container
+            const gallery = document.getElementById('categoryGallery');
+            gallery.style.display = 'grid';
+
+            // Show only items matching the category
+            document.querySelectorAll('#categoryGallery .gallery-item').forEach(item => {
+                if (item.classList.contains('category-' + catId)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Small smooth scroll so the user notices the newly opened images below
+            setTimeout(() => {
+                gallery.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 50);
         }
     </script>
 </body>
